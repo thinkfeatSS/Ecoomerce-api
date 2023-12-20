@@ -38,6 +38,43 @@ const productSchema = new mongoose.Schema({
       },
     },
   ],
+  reviews: [
+    {
+      name: {
+        type: Object,
+      },
+      comment: {
+        type: String,
+      },
+      productID: {
+        type: String,
+      },
+      createdAt : {
+        type: Date,
+        default: Date.now()
+      }
+    },
+  ],
+  ratings : {
+    type: Number,
+  },
+  shopId: {
+    type: String,
+    required: true
+  },
+  shop : {
+    type: Object,
+    required: true
+  },
+  sold_out: {
+    type: Number,
+    default: 0
+  },
+  createdAt :{
+    type: Date,
+    default: Date.now()
+  }
+
 });
 
 module.exports = mongoose.model("Product", productSchema);

@@ -1,13 +1,13 @@
 const app = require('./app');
 const connectDatabase = require('./config/db');
-const dotenv = require('dotenv').config({path: "./config/.env"});
 
 
 process.on('uncaughtException',(e)=>{
     console.log("Shuting up server due to error: " + e.message);
 });
 
-if(!process.env.NODE_ENV === 'PRODUCTION') {
+if(process.env.NODE_ENV !== 'PRODUCTION') {
+    const dotenv = require('dotenv').config({path: "./config/.env"});
 }
 // Connecting Database
 connectDatabase();
