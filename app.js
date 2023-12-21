@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const ErrorHandler = require('./utils/errorHandler');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
@@ -15,11 +17,14 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 app.get("/", (req, res) =>{
     res.send("Hello from api")
 });
+app.get("*", (req, res) =>{
+    res.send("not found")
+});
 
 const userRoutes = require("./routes/userRoutes");
 
 // app.use("/api/v1",userRoutes);
 // // Roting
 
-
+app.use(ErrorHandler);
 module.exports = app
